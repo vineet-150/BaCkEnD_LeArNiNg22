@@ -1,0 +1,44 @@
+// Ya kuch nahi ha aak method Banayga aur uko export kar Dega.
+
+const asyncHandler=(requestHandler)=>
+    
+{
+    (req,res,next)=>{
+        Promise.resolve(requestHandler(req,res,next)).catch((err)=>{
+            next
+        })
+    }
+
+}
+
+
+
+export {asyncHandler}
+
+
+
+
+// const asyncHandler =()=>{}
+// const asyncHandler=(func)=>()=>{}
+// const asyncHandler=(func)=>async()={}
+
+// Ya to try catch wala tha promise wala upper ha 
+// const asyncHandler=(fn)=> async(req,res,next)=>{
+
+//     try{
+
+//         await fn(req,res,next)
+
+//     }
+
+//     catch{
+//         res.status(err.code||500).json({
+//             success:false,
+//             message:err.message
+//         })
+        
+//     }
+
+
+
+// }
