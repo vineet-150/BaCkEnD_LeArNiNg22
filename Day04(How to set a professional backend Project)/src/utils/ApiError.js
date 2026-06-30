@@ -1,23 +1,25 @@
-class App extends Error{
-    constructor(statusCode,message="Something went wrong",errors=[],statck=""){
-        // super parent class ke constructor ya methods ko call karne ke liye use hota hai.
-        super(message)
-        this.statusCode=statusCode
-        this.data=null
-        this.message=false
-        this.success=false;
-        this.errors=errors
+class ApiError extends Error {
+    constructor(
+        statusCode,
+        message = "Something went wrong",
+        errors = [],
+        stack = ""
+    ) {
+        super(message);
+           // super parent class ke constructor ya methods ko call karne ke liye use hota hai.
 
-        if(this.statck){
-            this.stack=statck
+        this.statusCode = statusCode;
+        this.data = null;
+        this.message = message;
+        this.success = false;
+        this.errors = errors;
+
+        if (stack) {
+            this.stack = stack;
+        } else {
+            Error.captureStackTrace(this, this.constructor);
         }
-
-        else{
-            Error.captureStackTrace(this,this.constructor)
-        }
-
-
     }
 }
 
-export {ApiError}
+export { ApiError };
